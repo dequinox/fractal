@@ -5,7 +5,7 @@
 
 #pragma pack(push, 2)
 
-namespace darius
+namespace dequinox
 {
       struct BitmapInfoHeader
       {

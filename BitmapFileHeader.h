@@ -5,16 +5,17 @@
 
 #pragma pack(push, 2)
 
-namespace darius
+namespace dequinox
 {
       struct BitmapFileHeader
       {
             char header[2]{'B', 'M'};
-            int32_t filesize;
-            int32_t reserverd{0};
+            int32_t fileSize;
+            int32_t reserved{0};
             int32_t dataOffset;
       };
 }
+
 #pragma pack(pop)
 
 
