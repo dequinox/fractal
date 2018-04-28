@@ -3,6 +3,8 @@
 
 #include <string>
 #include "Zoom.h"
+#include <iostream>
+#include <assert.h>
 #include <memory>
 #include <vector>
 #include "Bitmap.cpp"
@@ -24,6 +26,9 @@ namespace dequinox
 
                   std::vector<int> m_ranges;
                   std::vector<RGB> m_colors;
+                  std::vector<int> m_rangeTotals;
+
+                  bool m_GotFirstRange{false};
 
             private:
 
@@ -31,6 +36,8 @@ namespace dequinox
                   void drawFractal();
                   void calculateTotalIteration();
                   void writeBitmap(std::string name);
+                  void calculateRangeTotals();
+                  int getRange(int iterations) const;
 
             public:
                   FractalCreator(int width, int height);

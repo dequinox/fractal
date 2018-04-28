@@ -7,14 +7,11 @@ using namespace std;
 int main()
 {
 
-      int width = 800;
-      int height = 600;
+      dequinox::FractalCreator fractalCreator(800, 600);
 
-      dequinox::FractalCreator fractalCreator(width, height);
-
-      fractalCreator.addRange(0.0, dequinox::RGB(0, 0, 0));
-      fractalCreator.addRange(0.3, dequinox::RGB(255, 0, 0));
-      fractalCreator.addRange(0.5, dequinox::RGB(255, 255, 0));
+      fractalCreator.addRange(0.0, dequinox::RGB(0, 0, 255));
+      fractalCreator.addRange(0.005, dequinox::RGB(255, 99, 71));
+      fractalCreator.addRange(0.008, dequinox::RGB(255, 215, 0));
       fractalCreator.addRange(1.0, dequinox::RGB(255, 255, 255));
 
       fractalCreator.addZoom(dequinox::Zoom(295, 202, 0.1));
