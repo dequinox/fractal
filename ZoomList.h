@@ -10,6 +10,10 @@ namespace dequinox
       class ZoomList
       {
             private:
+                  double m_xCenter;
+                  double m_yCenter;
+                  double m_scale{1.0};
+
                   int m_width{0};
                   int m_height{0};
                   std::vector<Zoom> zooms;
