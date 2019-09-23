@@ -5,13 +5,13 @@ namespace dequinox
 {
       void FractalCreator::run(std::string name)
       {
-
             calculateIteration();
             calculateTotalIteration();
             calculateRangeTotals();
             drawFractal();
             writeBitmap(name);
       }
+
       FractalCreator::FractalCreator(int width, int height) : m_width(width), m_height(height),
             m_histogram(new int[Mandelbrot::MAX_ITERATIONS]{}), m_fractal(new int[m_width * m_height]{}),
             m_bitmap(width, height), m_zoomList(width, height)
@@ -27,6 +27,7 @@ namespace dequinox
                   {
                         int iterations = m_fractal[y * m_width + x];
 
+				// calculate the color given range
                         int range = getRange(iterations);
                         int rangeTotal = m_rangeTotals[range];
                         int rangeStart = m_ranges[range];
@@ -57,6 +58,7 @@ namespace dequinox
             }
       }
 
+	// Calculate total number of iterations of the histogram
       void FractalCreator::calculateTotalIteration()
       {
             for (int i = 1; i < Mandelbrot::MAX_ITERATIONS; i++)
@@ -65,12 +67,14 @@ namespace dequinox
             }
       }
 
+	// Calculate number of iterations in each histogram cell
       void FractalCreator::calculateIteration()
       {
             for (int y = 0; y < m_height; y++)
             {
                   for (int x = 0; x < m_width; x++)
                   {
+				// get precise location by zooming
                         std::pair <double, double> coords = m_zoomList.doZoom(x, y);
 
                         int iterations = Mandelbrot::getIterations(coords.first, coords.second);
@@ -86,6 +90,7 @@ namespace dequinox
 
       }
 
+	// Get range index given the number of iterations
       int FractalCreator::getRange(int iterations) const
       {
             int range = 0;
@@ -99,6 +104,7 @@ namespace dequinox
             return range;
       }
 
+	// Add range of color
       void FractalCreator::addRange(double rangeEnd, const RGB &rgb)
       {
             m_ranges.push_back(rangeEnd * Mandelbrot::MAX_ITERATIONS);
@@ -111,6 +117,7 @@ namespace dequinox
             m_GotFirstRange = true;
       }
 
+	// Calculate total range
       void FractalCreator::calculateRangeTotals()
       {
             int rangeIndex = 0;
